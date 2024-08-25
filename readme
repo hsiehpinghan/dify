@@ -1,0 +1,24 @@
+# Run
+
+cd /home/hsiehpinghan/git/dify/docker
+docker compose up -d
+http://localhost/install
+
+# Add Hugging Face Model
+
+Model Type: LLM
+Model Name: Qwen/Qwen2-0.5B-Instruct
+Endpoint Type: Inference Endpoints
+API Token: hf_FYx\***\*\*\*\*\*\*\***Il
+Endpoint URL: http://tgi/
+Task: Text Generation
+
+# Add Text Embedding Inference
+
+Model Type: Text Embedding
+Model Name: jinaai/jina-embeddings-v2-base-zh
+Server url: http://tei_embedding/
+
+Model Type: Rerank
+Model Name: BAAI/bge-reranker-base
+Server url: http://tei_rerank/

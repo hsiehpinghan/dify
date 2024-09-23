@@ -1,3 +1,37 @@
+# create miniconda virtual machine (linux)
+
+cd /tmp
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+sh Miniconda3-latest-Linux-x86_64.sh -b
+/home/hsiehpinghan/miniconda3/bin/conda create --name python3.10 python=3.10
+export MINICONDA_HOME=/home/hsiehpinghan/miniconda3
+export PATH=$MINICONDA_HOME/bin:$PATH
+conda init bash
+cd /home/hsiehpinghan/git/dify/notebook
+conda activate python3.10
+
+# start miniconda jupyter notebook (linux)
+
+export ANACONDA_HOME=/home/hsiehpinghan/anaconda3
+export PATH=$ANACONDA_HOME/bin:$PATH
+cd /home/hsiehpinghan/git/dify/notebook
+conda activate python3.10
+jupyter notebook
+
+# Debug
+## frontend
+cd /home/hsiehpinghan/git/dify/web
+npm run dev
+run Run and Debug (Ctrl+Shift+D) -> Next.js: debug server-side    # set breakpoint in VSCode
+run Run and Debug (Ctrl+Shift+D) -> Next.js: debug client-side    # set breakpoint in browser (F12) and see VSCode client component
+## backend
+cd /home/hsiehpinghan/git/dify/docker
+docker compose -f docker-compose.middleware.yaml --profile weaviate -p dify up -d
+cd /home/hsiehpinghan/git/dify/api
+poetry env use 3.10
+poetry install
+poetry run python -m celery -A app.celery worker -P gevent -c 1 --loglevel INFO -Q dataset,generation,mail,ops_trace,app_deletion
+
 # Run
 
 cd /home/hsiehpinghan/git/dify/docker

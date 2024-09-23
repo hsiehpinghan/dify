@@ -201,8 +201,8 @@ services:
       - db
       - redis
       - tgi
-      - tei_embedding
-      - tei_rerank
+      #- tei_embedding
+      #- tei_rerank
     volumes:
       # Mount the storage directory to the container, for storing user files.
       - ./volumes/app/storage:/app/api/storage
@@ -690,23 +690,23 @@ services:
       - ssrf_proxy_network
       - default
 
-  tei_embedding:
-    image: ghcr.io/huggingface/text-embeddings-inference:cpu-1.5.0
-    command: --model-id jinaai/jina-embeddings-v2-base-zh
-    volumes:
-      - /home/hsiehpinghan/Desktop/dify_data:/data
-    networks:
-      - ssrf_proxy_network
-      - default
+  #tei_embedding:
+  #  image: ghcr.io/huggingface/text-embeddings-inference:cpu-1.5.0
+  #  command: --model-id jinaai/jina-embeddings-v2-base-zh
+  #  volumes:
+  #    - /home/hsiehpinghan/Desktop/dify_data:/data
+  #  networks:
+  #    - ssrf_proxy_network
+  #    - default
 
-  tei_rerank:
-    image: ghcr.io/huggingface/text-embeddings-inference:cpu-1.5.0
-    command: --model-id BAAI/bge-reranker-base
-    volumes:
-      - /home/hsiehpinghan/Desktop/dify_data:/data
-    networks:
-      - ssrf_proxy_network
-      - default
+  #tei_rerank:
+  #  image: ghcr.io/huggingface/text-embeddings-inference:cpu-1.5.0
+  #  command: --model-id BAAI/bge-reranker-base
+  #  volumes:
+  #    - /home/hsiehpinghan/Desktop/dify_data:/data
+  #  networks:
+  #    - ssrf_proxy_network
+  #    - default
 
 networks:
   # create a network between sandbox, api and ssrf_proxy, and can not access outside.

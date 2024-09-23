@@ -19,6 +19,13 @@ conda activate python3.10
 jupyter notebook
 
 # Debug
+## frontend and backend
+cd /home/hsiehpinghan/git/dify/api
+set python interpreter to /home/hsiehpinghan/git/dify/api/.venv/bin/python
+run Run and Debug (Ctrl+Shift+D) -> next-js and flask    # set breakpoint in VSCode and Browser
+
+
+
 ## frontend
 cd /home/hsiehpinghan/git/dify/web
 npm run dev
